@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Qual Jogador da Copa Você É?</title>
+<title>Qual Jogador da Copa VocÃª Ã©?</title>
 
 <style>
 *{
@@ -109,7 +109,7 @@ font-size:1rem;
 
 <div class="container">
 
-<h1>? Qual Jogador da Copa Você É?</h1>
+<h1>? Qual Jogador da Copa VocÃª Ã©?</h1>
 
 <div class="progress">
 <div class="progress-bar" id="progress"></div>
@@ -131,7 +131,7 @@ const perguntas = [
 {
 pergunta:"Como seus amigos te descrevem?",
 opcoes:[
-["Líder","ronaldo"],
+["LÃ­der","ronaldo"],
 ["Criativo","messi"],
 ["Divertido","neymar"],
 ["Determinado","mbappe"]
@@ -139,37 +139,37 @@ opcoes:[
 },
 
 {
-pergunta:"O que você valoriza mais?",
+pergunta:"O que vocÃª valoriza mais?",
 opcoes:[
 ["Disciplina","ronaldo"],
-["Inteligência","messi"],
+["InteligÃªncia","messi"],
 ["Talento","neymar"],
 ["Velocidade","mbappe"]
 ]
 },
 
 {
-pergunta:"Num desafio você...",
+pergunta:"Num desafio vocÃª...",
 opcoes:[
-["Insiste até vencer","ronaldo"],
+["Insiste atÃ© vencer","ronaldo"],
 ["Pensa antes de agir","messi"],
 ["Improvisa","neymar"],
-["Age rápido","mbappe"]
+["Age rÃ¡pido","mbappe"]
 ]
 },
 
 {
-pergunta:"Seu estilo é...",
+pergunta:"Seu estilo Ã©...",
 opcoes:[
 ["Competitivo","ronaldo"],
-["Estratégico","messi"],
+["EstratÃ©gico","messi"],
 ["Criativo","neymar"],
 ["Explosivo","mbappe"]
 ]
 },
 
 {
-pergunta:"Em grupo você costuma...",
+pergunta:"Em grupo vocÃª costuma...",
 opcoes:[
 ["Liderar","ronaldo"],
 ["Organizar","messi"],
@@ -181,27 +181,27 @@ opcoes:[
 {
 pergunta:"Qual qualidade te representa?",
 opcoes:[
-["Persistência","ronaldo"],
-["Visão","messi"],
+["PersistÃªncia","ronaldo"],
+["VisÃ£o","messi"],
 ["Criatividade","neymar"],
 ["Coragem","mbappe"]
 ]
 },
 
 {
-pergunta:"Como toma decisões?",
+pergunta:"Como toma decisÃµes?",
 opcoes:[
-["Com confiança","ronaldo"],
-["Com lógica","messi"],
-["Com emoção","neymar"],
+["Com confianÃ§a","ronaldo"],
+["Com lÃ³gica","messi"],
+["Com emoÃ§Ã£o","neymar"],
 ["Rapidamente","mbappe"]
 ]
 },
 
 {
-pergunta:"Você prefere...",
+pergunta:"VocÃª prefere...",
 opcoes:[
-["Ser referência","ronaldo"],
+["Ser referÃªncia","ronaldo"],
 ["Resolver problemas","messi"],
 ["Se destacar","neymar"],
 ["Explorar oportunidades","mbappe"]
@@ -212,7 +212,7 @@ opcoes:[
 pergunta:"O sucesso vem de...",
 opcoes:[
 ["Treino","ronaldo"],
-["Inteligência","messi"],
+["InteligÃªncia","messi"],
 ["Talento","neymar"],
 ["Atitude","mbappe"]
 ]
@@ -221,7 +221,7 @@ opcoes:[
 {
 pergunta:"Qual palavra te define?",
 opcoes:[
-["Determinação","ronaldo"],
+["DeterminaÃ§Ã£o","ronaldo"],
 ["Genialidade","messi"],
 ["Criatividade","neymar"],
 ["Velocidade","mbappe"]
@@ -235,25 +235,25 @@ const jogadores = {
 ronaldo:{
 nome:"Cristiano Ronaldo",
 foto:"https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg",
-texto:"Você é um líder nato. Competitivo, disciplinado e determinado."
+texto:"VocÃª Ã© um lÃ­der nato. Competitivo, disciplinado e determinado."
 },
 
 messi:{
 nome:"Lionel Messi",
 foto:"https://upload.wikimedia.org/wikipedia/commons/c/c1/Lionel_Messi_20180626.jpg",
-texto:"Você é estratégico, inteligente e costuma encontrar soluções criativas."
+texto:"VocÃª Ã© estratÃ©gico, inteligente e costuma encontrar soluÃ§Ãµes criativas."
 },
 
 neymar:{
 nome:"Neymar",
 foto:"https://upload.wikimedia.org/wikipedia/commons/5/5c/Neymar_2018.jpg",
-texto:"Você é criativo, carismático e gosta de fazer as coisas do seu jeito."
+texto:"VocÃª Ã© criativo, carismÃ¡tico e gosta de fazer as coisas do seu jeito."
 },
 
 mbappe:{
-nome:"Kylian Mbappé",
+nome:"Kylian Mbappï¿½",
 foto:"https://upload.wikimedia.org/wikipedia/commons/9/90/Kylian_Mbappe_2019.jpg",
-texto:"Você é rápido, confiante e sempre busca novos desafios."
+texto:"VocÃª Ã© rÃ¡pido, confiante e sempre busca novos desafios."
 }
 
 };
@@ -327,7 +327,7 @@ const j = jogadores[vencedor];
 result.style.display="block";
 
 result.innerHTML = `
-<h2>Seu jogador é:</h2>
+<h2>Seu jogador Ã©:</h2>
 <img src="${j.foto}">
 <h1>${j.nome}</h1>
 <p>${j.texto}</p>

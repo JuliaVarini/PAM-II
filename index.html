@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qual Jogador da Copa Você É?</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#009c3b,#002776);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+color:white;
+}
+
+.container{
+background:white;
+color:#222;
+width:100%;
+max-width:700px;
+padding:30px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+h1{
+text-align:center;
+margin-bottom:20px;
+}
+
+.progress{
+height:10px;
+background:#ddd;
+border-radius:10px;
+overflow:hidden;
+margin-bottom:20px;
+}
+
+.progress-bar{
+height:100%;
+width:0%;
+background:#00c853;
+transition:.3s;
+}
+
+.question{
+font-size:1.3rem;
+margin-bottom:20px;
+font-weight:bold;
+}
+
+.options button{
+display:block;
+width:100%;
+margin:10px 0;
+padding:15px;
+border:none;
+border-radius:10px;
+background:#f1f1f1;
+cursor:pointer;
+font-size:1rem;
+transition:.2s;
+}
+
+.options button:hover{
+background:#009c3b;
+color:white;
+}
+
+.result{
+text-align:center;
+display:none;
+}
+
+.result img{
+width:200px;
+height:200px;
+border-radius:50%;
+object-fit:cover;
+margin:20px auto;
+display:block;
+}
+
+.restart{
+margin-top:20px;
+padding:15px 25px;
+border:none;
+background:#009c3b;
+color:white;
+border-radius:10px;
+cursor:pointer;
+font-size:1rem;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>? Qual Jogador da Copa Você É?</h1>
+
+<div class="progress">
+<div class="progress-bar" id="progress"></div>
+</div>
+
+<div id="quiz">
+<div class="question" id="question"></div>
+<div class="options" id="options"></div>
+</div>
+
+<div class="result" id="result"></div>
+
+</div>
+
+<script>
+
+const perguntas = [
+
+{
+pergunta:"Como seus amigos te descrevem?",
+opcoes:[
+["Líder","ronaldo"],
+["Criativo","messi"],
+["Divertido","neymar"],
+["Determinado","mbappe"]
+]
+},
+
+{
+pergunta:"O que você valoriza mais?",
+opcoes:[
+["Disciplina","ronaldo"],
+["Inteligência","messi"],
+["Talento","neymar"],
+["Velocidade","mbappe"]
+]
+},
+
+{
+pergunta:"Num desafio você...",
+opcoes:[
+["Insiste até vencer","ronaldo"],
+["Pensa antes de agir","messi"],
+["Improvisa","neymar"],
+["Age rápido","mbappe"]
+]
+},
+
+{
+pergunta:"Seu estilo é...",
+opcoes:[
+["Competitivo","ronaldo"],
+["Estratégico","messi"],
+["Criativo","neymar"],
+["Explosivo","mbappe"]
+]
+},
+
+{
+pergunta:"Em grupo você costuma...",
+opcoes:[
+["Liderar","ronaldo"],
+["Organizar","messi"],
+["Animar","neymar"],
+["Motivar","mbappe"]
+]
+},
+
+{
+pergunta:"Qual qualidade te representa?",
+opcoes:[
+["Persistência","ronaldo"],
+["Visão","messi"],
+["Criatividade","neymar"],
+["Coragem","mbappe"]
+]
+},
+
+{
+pergunta:"Como toma decisões?",
+opcoes:[
+["Com confiança","ronaldo"],
+["Com lógica","messi"],
+["Com emoção","neymar"],
+["Rapidamente","mbappe"]
+]
+},
+
+{
+pergunta:"Você prefere...",
+opcoes:[
+["Ser referência","ronaldo"],
+["Resolver problemas","messi"],
+["Se destacar","neymar"],
+["Explorar oportunidades","mbappe"]
+]
+},
+
+{
+pergunta:"O sucesso vem de...",
+opcoes:[
+["Treino","ronaldo"],
+["Inteligência","messi"],
+["Talento","neymar"],
+["Atitude","mbappe"]
+]
+},
+
+{
+pergunta:"Qual palavra te define?",
+opcoes:[
+["Determinação","ronaldo"],
+["Genialidade","messi"],
+["Criatividade","neymar"],
+["Velocidade","mbappe"]
+]
+}
+
+];
+
+const jogadores = {
+
+ronaldo:{
+nome:"Cristiano Ronaldo",
+foto:"https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg",
+texto:"Você é um líder nato. Competitivo, disciplinado e determinado."
+},
+
+messi:{
+nome:"Lionel Messi",
+foto:"https://upload.wikimedia.org/wikipedia/commons/c/c1/Lionel_Messi_20180626.jpg",
+texto:"Você é estratégico, inteligente e costuma encontrar soluções criativas."
+},
+
+neymar:{
+nome:"Neymar",
+foto:"https://upload.wikimedia.org/wikipedia/commons/5/5c/Neymar_2018.jpg",
+texto:"Você é criativo, carismático e gosta de fazer as coisas do seu jeito."
+},
+
+mbappe:{
+nome:"Kylian Mbappé",
+foto:"https://upload.wikimedia.org/wikipedia/commons/9/90/Kylian_Mbappe_2019.jpg",
+texto:"Você é rápido, confiante e sempre busca novos desafios."
+}
+
+};
+
+let indice = 0;
+
+let pontos = {
+ronaldo:0,
+messi:0,
+neymar:0,
+mbappe:0
+};
+
+const question = document.getElementById("question");
+const options = document.getElementById("options");
+const progress = document.getElementById("progress");
+const result = document.getElementById("result");
+
+function carregarPergunta(){
+
+const atual = perguntas[indice];
+
+question.textContent = atual.pergunta;
+
+options.innerHTML = "";
+
+atual.opcoes.forEach(opcao=>{
+
+const btn = document.createElement("button");
+
+btn.textContent = opcao[0];
+
+btn.onclick = ()=>responder(opcao[1]);
+
+options.appendChild(btn);
+
+});
+
+progress.style.width =
+((indice)/perguntas.length)*100 + "%";
+
+}
+
+function responder(jogador){
+
+pontos[jogador]++;
+
+indice++;
+
+if(indice < perguntas.length){
+carregarPergunta();
+}else{
+mostrarResultado();
+}
+
+}
+
+function mostrarResultado(){
+
+document.getElementById("quiz").style.display="none";
+
+progress.style.width="100%";
+
+const vencedor =
+Object.keys(pontos).reduce((a,b)=>
+pontos[a] > pontos[b] ? a : b
+);
+
+const j = jogadores[vencedor];
+
+result.style.display="block";
+
+result.innerHTML = `
+<h2>Seu jogador é:</h2>
+<img src="${j.foto}">
+<h1>${j.nome}</h1>
+<p>${j.texto}</p>
+<button class="restart" onclick="location.reload()">
+Refazer Teste
+</button>
+`;
+
+}
+
+carregarPergunta();
+
+</script>
+
+</body>
+</html>
